@@ -48,7 +48,7 @@ model.to(device)
 
 ```
 
-## Tokenize Input Sequences, Set Token Type ID Based on Species ID found [here][https://github.com/Boehringer-Ingelheim/SynCodonLM/blob/master/SynCodonLM/species_token_type.py]
+## Tokenize Input Sequences, Set Token Type ID Based on Species ID found [here](https://github.com/Boehringer-Ingelheim/SynCodonLM/blob/master/SynCodonLM/species_token_type.py)
 
 ```python
 token_type_id = 67  #E. coli
@@ -73,6 +73,9 @@ logits = outputs.logits  # shape: [batch_size, sequence_length, vocab_size]
 ```
 
 ## Citation
+If you use this work, please cite:
+
+```bibtex
 @article {Heuschkel2025.08.19.671089,
 	author = {Heuschkel, James and Kingsley, Laura and Pefaur, Noah and Nixon, Andrew and Cramer, Steven},
 	title = {Advancing Codon Language Modeling with Synonymous Codon Constrained Masking},
@@ -85,7 +88,7 @@ logits = outputs.logits  # shape: [batch_size, sequence_length, vocab_size]
 	eprint = {https://www.biorxiv.org/content/early/2025/08/24/2025.08.19.671089.full.pdf},
 	journal = {bioRxiv}
 }
-
+'''
 
 -----
 
