@@ -89,8 +89,6 @@ If you use this work, please cite:
 }
 
 
------
-
 ## Usage With Batches
 ```python
 from transformers import AutoTokenizer, AutoModelForMaskedLM, AutoConfig
