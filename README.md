@@ -87,7 +87,8 @@ If you use this work, please cite:
 	eprint = {https://www.biorxiv.org/content/early/2025/08/24/2025.08.19.671089.full.pdf},
 	journal = {bioRxiv}
 }
-
+```
+----
 
 ## Usage With Batches
 ```python
