@@ -48,7 +48,7 @@ model.to(device)
 
 ```
 
-## Tokenize Input Sequences, Set Token Type ID Based on Species ID found in [https://github.com/Boehringer-Ingelheim/SynCodonLM/blob/master/SynCodonLM/species_token_type.py]
+## Tokenize Input Sequences, Set Token Type ID Based on Species ID found [here][https://github.com/Boehringer-Ingelheim/SynCodonLM/blob/master/SynCodonLM/species_token_type.py]
 
 ```python
 token_type_id = 67  #E. coli
