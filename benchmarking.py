@@ -2,13 +2,13 @@ import pandas as pd
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset
-from transformers import AutoTokenizer, AutoModel, AutoConfig
+from transformers import AutoTokenizer, AutoModelForMaskedLM, AutoConfig
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error, r2_score
 from scipy.stats import spearmanr, pearsonr
 from tqdm import tqdm
 import numpy as np
-from .SynCodonLM import clean_split_sequence
+from SynCodonLM.utils import clean_split_sequence
 
 dataset_token_type_map = {
     1: 67,
@@ -39,9 +39,9 @@ class EmbeddingDataset(Dataset):
 
 
 # load model and tokenizer
-tokenizer = AutoTokenizer.from_pretrained("./SynCodonLM", trust_remote_code=True)
-config = AutoConfig.from_pretrained("./SynCodonLM", trust_remote_code=True)
-base_model = AutoModel.from_pretrained("./SynCodonLM", trust_remote_code=True, config=config)
+tokenizer = AutoTokenizer.from_pretrained("jheuschkel/SynCodonLM")
+config = AutoConfig.from_pretrained("jheuschkel/SynCodonLM")
+base_model = AutoModelForMaskedLM.from_pretrained("jheuschkel/SynCodonLM", config=config)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 base_model.to(device)
@@ -200,4 +200,5 @@ with pd.ExcelWriter('cross_validation_metrics_seeds_final-yeo.xlsx', engine='ope
     mean_df.to_excel(writer, sheet_name='Mean_Only', index=False)
 
 print("Saved results")
+
 
