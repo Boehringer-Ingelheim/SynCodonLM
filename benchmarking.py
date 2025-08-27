@@ -8,7 +8,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 from scipy.stats import spearmanr, pearsonr
 from tqdm import tqdm
 import numpy as np
-from SynCodonLM.utils import clean_split_sequence
+from SynCodonLM import clean_split_sequence
 
 dataset_token_type_map = {
     1: 67,
@@ -195,7 +195,7 @@ results_df = pd.DataFrame(all_results)
 mean_df = results_df[results_df['Fold'] == 'Mean']
 
 
-with pd.ExcelWriter('cross_validation_metrics_seeds_final-yeo.xlsx', engine='openpyxl') as writer:
+with pd.ExcelWriter('cross_validation_metrics_SynCodonLM.xlsx', engine='openpyxl') as writer:
     results_df.to_excel(writer, sheet_name='All_Results', index=False)
     mean_df.to_excel(writer, sheet_name='Mean_Only', index=False)
 

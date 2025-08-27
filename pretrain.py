@@ -13,8 +13,8 @@ from torch.optim.lr_scheduler import LambdaLR
 from pytorch_lightning.utilities.rank_zero import rank_zero_only
 from pytorch_lightning.callbacks import TQDMProgressBar
 import gc
-from SynCodonLM.utils import synonymous_codons
-from SynCodonLM.species_token_type import species_token_type
+from SynCodonLM import synonymous_codons
+from SynCodonLM import species_token_type
 
 
 #### MODEL ####
