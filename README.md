@@ -5,7 +5,7 @@
 
 
 
-- This repository contains code to utilize the model, and reproduce results of the preprint [**Advancing Codon Language Modeling with Synonymous Codon Constrained Masking**](https://www.biorxiv.org/content/10.1101/2025.08.19.671089v1), by **James Heuschkel**, **Laura Kingsley**, **Noah Pefaur**, **Andrew Nixon**, and **Steven Cramer**.
+- This repository contains code to utilize the model, and reproduce results of the preprint [**Advancing Codon Language Modeling with Synonymous Codon Constrained Masking**](https://doi.org/10.1101/2025.08.19.671089).
 - Unlike other Codon Language Models, SynCodonLM was trained with logit-level control, masking logits for non-synonymous codons. This allowed the model to learn codon-specific patterns disentangled from protein-level semantics.
 - [Pre-training dataset of 66 Million CDS is available on Hugging Face here.](https://huggingface.co/datasets/jheuschkel/cds-dataset)
 ---
