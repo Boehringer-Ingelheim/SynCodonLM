@@ -13,63 +13,42 @@
 
 ```python
 git clone https://github.com/Boehringer-Ingelheim/SynCodonLM.git
-pip install -r requirements.txt
+cd SynCodonLM
+pip install -r requirements.txt #maybe not neccesary depending on your env :)
 ```
 ---
 # Usage
-## Prepare Sequence
-
+## SynCodonLM Uses Token-Type ID's to Add Species Context to it's Outputs
+### Before use, find the token type ID (species_token_type) for your species of interest [here] (https://github.com/Boehringer-Ingelheim/SynCodonLM/blob/master/SynCodonLM/species_token_type.py)!
+---
+## Embedding a Coding DNA Sequence
 ```python
-from SynCodonLM.utils import clean_split_sequence
+from SynCodonLM import CodonEmbeddings
+
+model = CodonEmbeddings() #this loads the model & tokenizer using our built-in functions
+
 seq = 'ATGTCCACCGGGCGGTGA'
-seq = clean_split_sequence(seq)  # Returns: 'ATG TCC ACC GGG CGG TGA'
+
+mean_pooled_embedding = model.get_mean_embedding(seq, species_token_type=67) #E. coli
+#returns --> tensor of shape [768]
+
+raw_output = model.get_raw_embeddings(seq, species_token_type=67) #E. coli
+raw_embedding_final_layer = raw_embedding_final_layer.hidden_states[-1] #treat this like a typical Hugging Face model dictionary based output!
+#returns --> tensor of shape [batch size (1), sequence length, 768]
 ```
-
-## Load Model & Tokenizer from Hugging Face
+## Codon Optimizing a Protein Sequence
+### This has not yet been rigourosly evaluated, although we can confidently say it will generate 'natural looking' coding-DNA sequences. 
 ```python
-from transformers import AutoTokenizer, AutoModelForMaskedLM, AutoConfig
-import torch
+from SynCodonLM import CodonOptimizer
 
-tokenizer = AutoTokenizer.from_pretrained("jheuschkel/SynCodonLM")
-config = AutoConfig.from_pretrained("jheuschkel/SynCodonLM")
-model = AutoModelForMaskedLM.from_pretrained("jheuschkel/SynCodonLM", config=config)
+optimizer = CodonOptimizer() #this loads the model & tokenizer using our built-in functions
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model.to(device)
-```
-### If there are networking issues, you can manually [download the model from Hugging Face](https://huggingface.co/jheuschkel/SynCodonLM/resolve/main/model.safetensors?download=true) & place it in the /SynCodonLM directory
-```python
-tokenizer = AutoTokenizer.from_pretrained("./SynCodonLM", trust_remote_code=True)
-config = AutoConfig.from_pretrained("./SynCodonLM", trust_remote_code=True)
-model = AutoModel.from_pretrained("./SynCodonLM", trust_remote_code=True, config=config)
-
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model.to(device)
-
-```
-
-## Tokenize Input Sequences, Set Token Type ID Based on Species ID found [here](https://github.com/Boehringer-Ingelheim/SynCodonLM/blob/master/SynCodonLM/species_token_type.py)
-
-```python
-token_type_id = 67  #E. coli
-inputs = tokenizer(seq, return_tensors="pt").to(device)
-inputs['token_type_ids'] = torch.full_like(inputs['input_ids'], token_type_id) # manually set token_type_ids
-```
-
-## Gather Model Outputs
-```python
-outputs = model(**inputs, output_hidden_states=True)
-```
-
-## Get Mean Embedding from Final Layer
-```python
-embedding = outputs.hidden_states[-1] #this can also index any layer (0-11)
-mean_embedding = torch.mean(embedding, dim=1).squeeze(0)
-```
-
-## You Can Also View Language Head Output
-```python
-logits = outputs.logits  # shape: [batch_size, sequence_length, vocab_size]
+result = optimizer.optimize(
+    protein_sequence="MSKGEELFTGVVPILVELDGDVNGHKFSVSGEGEGDATYGKLTLKFICTTGKLPVPWPTLVTTFSYGVQCFSRYPDHMKRHDFFKSAMPEGYVQERTIFFKDDGNYKTRAEVKFEGDTLVNRIELKGIDFKEDGNILGHKLEYNYNSHNVYIMADKQKNGIKVNFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSALSKDPNEKRDHMVLLEFVTAAGITLGMDELYK", #GFP 
+    species_token_type=67, #E. coli
+    deterministic=True #true by default
+)
+codon_optimized_sequence = result.sequence
 ```
 
 ## Citation
@@ -90,52 +69,5 @@ If you use this work, please cite:
 ```
 ----
 
-## Usage With Batches
-```python
-from transformers import AutoTokenizer, AutoModelForMaskedLM, AutoConfig
-import torch
-from SynCodonLM.utils import clean_split_sequence
-
-tokenizer = AutoTokenizer.from_pretrained("jheuschkel/SynCodonLM")
-config = AutoConfig.from_pretrained("jheuschkel/SynCodonLM")
-model = AutoModelForMaskedLM.from_pretrained("jheuschkel/SynCodonLM", config=config)
-
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model.to(device)
-
-# List of sequences
-seqs = [
-    'ATGTCCACCGGGCGGTGA',
-    'ATGCGTACCGGGTAGTGA',
-    'ATGTTTACCGGGTGGTGA'
-]
-
-# List of token type ids (species)
-species_token_type_ids = [
-    67,   # E. coli
-    394,  # C. griseus
-    317   # H. sapiens
-]
-
-# Prepare list
-seqs = [clean_split_sequence(seq) for seq in seqs]
-
-# Tokenize batch with padding
-inputs = tokenizer(seqs, return_tensors="pt", padding=True).to(device)
-
-# Create token_type_ids tensor
-batch_size, seq_len = inputs['input_ids'].shape
-token_type_ids = torch.zeros((batch_size, seq_len), dtype=torch.long).to(device)
-
-# Fill each row with the species-specific token_type_id
-for i, species_id in enumerate(species_token_type_ids):
-    token_type_ids[i, :] = species_id  # Fill entire row with the species ID
-
-# Add to inputs
-inputs['token_type_ids'] = token_type_ids
-
-# Run model
-outputs = model(**inputs)
-```
 
 
