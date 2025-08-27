@@ -37,7 +37,7 @@ raw_embedding_final_layer = raw_embedding_final_layer.hidden_states[-1] #treat t
 #returns --> tensor of shape [batch size (1), sequence length, 768]
 ```
 ## Codon Optimizing a Protein Sequence
-### This has not yet been rigourosly evaluated, although we can confidently say it will generate 'natural looking' coding-DNA sequences. 
+###### This has not yet been rigourosly evaluated, although we can confidently say it will generate 'natural looking' coding-DNA sequences. 
 ```python
 from SynCodonLM import CodonOptimizer
 
