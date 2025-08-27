@@ -68,7 +68,18 @@ If you use this work, please cite:
 }
 ```
 ----
-
+#### Model Organisms Species Token Type IDs
+| Organism                | Token-Type ID           |
+|-------------------------|----------------|
+| *E. coli*      | 67      |
+| *S. cerevisiae* | 108 |
+| *C. elegans*| 187  |
+| *D. melanogaster*| 178 |
+| *D. rerio*           |468 |
+| *M. musculus*          | 321 |
+| *A. thaliana*  | 266           |
+| *H. sapiens*              | 317 |
+| *C. griseus*               | 394 |
 
 
 
