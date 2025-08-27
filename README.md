@@ -18,8 +18,8 @@ pip install -r requirements.txt #maybe not neccesary depending on your env :)
 ```
 ---
 # Usage
-## SynCodonLM Uses Token-Type ID's to Add Species Context to it's Outputs
-### Before use, find the token type ID (species_token_type) for your species of interest [here](https://github.com/Boehringer-Ingelheim/SynCodonLM/blob/master/SynCodonLM/species_token_type.py)!
+#### SynCodonLM Uses Token-Type ID's to Add Species Context to it's Outputs
+###### Before use, find the token type ID (species_token_type) for your species of interest [here](https://github.com/Boehringer-Ingelheim/SynCodonLM/blob/master/SynCodonLM/species_token_type.py)!
 ---
 ## Embedding a Coding DNA Sequence
 ```python
