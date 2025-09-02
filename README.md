@@ -34,7 +34,7 @@ mean_pooled_embedding = model.get_mean_embedding(seq, species_token_type=67) #E.
 #returns --> tensor of shape [768]
 
 raw_output = model.get_raw_embeddings(seq, species_token_type=67) #E. coli
-raw_embedding_final_layer = raw_embedding_final_layer.hidden_states[-1] #treat this like a typical Hugging Face model dictionary based output!
+raw_embedding_final_layer = raw_output.hidden_states[-1] #treat this like a typical Hugging Face model dictionary based output!
 #returns --> tensor of shape [batch size (1), sequence length, 768]
 ```
 ## Codon Optimizing a Protein Sequence
