@@ -56,7 +56,7 @@ codon_optimized_sequence = result.sequence
 ```python
 from SynCodonLM import CodonEmbeddings
 
-model = CodonEmbeddings(model='SynCodonLM-V2-NoTokenType') #this loads the model & tokenizer using our built-in functions
+model = CodonEmbeddings(model_name='jheuschkel/SynCodonLM-V2-NoTokenType') #this loads the model & tokenizer using our built-in functions
 
 seq = 'ATGTCCACCGGGCGGTGA'
 
