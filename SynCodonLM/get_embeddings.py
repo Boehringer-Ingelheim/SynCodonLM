@@ -7,7 +7,7 @@ from .utils import clean_split_sequence
 class CodonEmbeddings:
     """Class to simplify model usage :)"""
     def __init__(self, model_name: str = "jheuschkel/SynCodonLM-V2", device: Optional[str] = None):
-        print('Notice: species token type IDs have changed, please make sure you are using updated values found on our github front page.)
+        print('Notice: species token type IDs have changed, please make sure you are using updated values found on our github front page.')
         self.device = torch.device(device) if device else torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
         self.config = AutoConfig.from_pretrained(model_name)
@@ -16,9 +16,7 @@ class CodonEmbeddings:
     def get_mean_embedding(self, sequence, species_token_type=500, layer=-1):
         sequence = clean_split_sequence(sequence)
         inputs = self.tokenizer(sequence, return_tensors="pt").to(self.device)
-        if self.config.name_or_path.endswith("SynCodonLM-V2-NoTokenType"):
-            inputs['token_type_ids'] = torch.full_like(inputs['input_ids'])
-        else:
+        if "NoTokenType" not in self.config.name_or_path:
             inputs['token_type_ids'] = torch.full_like(inputs['input_ids'], species_token_type) # manually set token_type_ids
         outputs = self.model(**inputs, output_hidden_states=True)
         embedding = outputs.hidden_states[layer] #this can also index any layer (0-11)
@@ -28,9 +26,7 @@ class CodonEmbeddings:
     def get_raw_embeddings(self, sequence, species_token_type=500):
         sequence = clean_split_sequence(sequence)
         inputs = self.tokenizer(sequence, return_tensors="pt").to(self.device)
-        if self.config.name_or_path.endswith("SynCodonLM-V2-NoTokenType"):
-            inputs['token_type_ids'] = torch.full_like(inputs['input_ids'])
-        else:
+        if "NoTokenType" not in self.config.name_or_path:
             inputs['token_type_ids'] = torch.full_like(inputs['input_ids'], species_token_type) # manually set token_type_ids
         outputs = self.model(**inputs, output_hidden_states=True)
         return outputs
