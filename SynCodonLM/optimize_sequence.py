@@ -21,7 +21,7 @@ class CodonOptimizer:
     """
 
     def __init__(self, model_name: str = "jheuschkel/SynCodonLM-V2", device: Optional[str] = None):
-        print('Notice: species token type IDs have changed, please make sure you are using updated values found on our github front page.)
+        print('Notice: species token type IDs have changed, please make sure you are using updated values found on our github front page.')
         self.device = torch.device(device) if device else torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
         self.config = AutoConfig.from_pretrained(model_name)
