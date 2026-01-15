@@ -52,6 +52,22 @@ result = optimizer.optimize(
 codon_optimized_sequence = result.sequence
 ```
 
+## Embedding a Coding DNA Sequence Using our Model Trained without Token Type ID
+```python
+from SynCodonLM import CodonEmbeddings
+
+model = CodonEmbeddings(model='SynCodonLM-V2-NoTokenType') #this loads the model & tokenizer using our built-in functions
+
+seq = 'ATGTCCACCGGGCGGTGA'
+
+mean_pooled_embedding = model.get_mean_embedding(seq)
+#returns --> tensor of shape [768]
+
+raw_output = model.get_raw_embeddings(seq)
+raw_embedding_final_layer = raw_output.hidden_states[-1] #treat this like a typical Hugging Face model dictionary based output!
+#returns --> tensor of shape [batch size (1), sequence length, 768]
+```
+
 ## Citation
 If you use this work, please cite:
 ```bibtex
