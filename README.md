@@ -30,7 +30,7 @@ model = CodonEmbeddings() #this loads the model & tokenizer using our built-in f
 
 seq = 'ATGTCCACCGGGCGGTGA'
 
-mean_pooled_embedding = model.get_mean_embedding(seq, species_token_type=67) #E. coli
+mean_pooled_embedding = model.get_mean_embedding(seq, species_token_type=30) #E. coli
 #returns --> tensor of shape [768]
 
 raw_output = model.get_raw_embeddings(seq, species_token_type=67) #E. coli
