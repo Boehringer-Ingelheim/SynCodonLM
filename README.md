@@ -46,7 +46,7 @@ optimizer = CodonOptimizer() #this loads the model & tokenizer using our built-i
 
 result = optimizer.optimize(
     protein_sequence="MSKGEELFTGVVPILVELDGDVNGHKFSVSGEGEGDATYGKLTLKFICTTGKLPVPWPTLVTTFSYGVQCFSRYPDHMKRHDFFKSAMPEGYVQERTIFFKDDGNYKTRAEVKFEGDTLVNRIELKGIDFKEDGNILGHKLEYNYNSHNVYIMADKQKNGIKVNFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSALSKDPNEKRDHMVLLEFVTAAGITLGMDELYK", #GFP 
-    species_token_type=67, #E. coli
+    species_token_type=30, #E. coli
     deterministic=True #true by default
 )
 codon_optimized_sequence = result.sequence
@@ -72,15 +72,15 @@ If you use this work, please cite:
 #### Model Organisms Species Token Type IDs
 | Organism                | Token-Type ID           |
 |-------------------------|----------------|
-| *E. coli*      | 67      |
-| *S. cerevisiae* | 108 |
-| *C. elegans*| 187  |
-| *D. melanogaster*| 178 |
-| *D. rerio*           |468 |
-| *M. musculus*          | 321 |
-| *A. thaliana*  | 266           |
-| *H. sapiens*              | 317 |
-| *C. griseus*               | 394 |
+| *E. coli*      | 30      |
+| *S. cerevisiae* | 118 |
+| *C. elegans*| 212  |
+| *D. melanogaster*| 190 |
+| *D. rerio*           |428 |
+| *M. musculus*          | 368 |
+| *A. thaliana*  | 258           |
+| *H. sapiens*              | 373 |
+| *C. griseus*               | 345 |
 
 
 
