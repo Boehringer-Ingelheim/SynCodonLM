@@ -13,8 +13,7 @@
 
 | 🚨 **Important Update** |
 |-------------------------|
-| **Model has been retrained — with new species token type ID numberings.  
-Please double‑check the mapping.** |
+| Model has been retrained — with new species token type ID numberings. Please double‑check the mapping. |
 
 
 ## Installation
