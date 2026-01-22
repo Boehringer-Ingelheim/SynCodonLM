@@ -9,6 +9,14 @@
 - Unlike other Codon Language Models, SynCodonLM was trained with logit-level control, masking logits for non-synonymous codons. This allowed the model to learn codon-specific patterns disentangled from protein-level semantics.
 - [Pre-training dataset of 43 Million CDS is available on Hugging Face here.](https://huggingface.co/datasets/jheuschkel/clustered-cds-dataset)
 ---
+
+
+| 🚨 **Important Update** |
+|-------------------------|
+| **Model has been retrained — with new species token type ID numberings.  
+Please double‑check the mapping.** |
+
+
 ## Installation
 
 ```python
