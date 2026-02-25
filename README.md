@@ -72,17 +72,21 @@ raw_embedding_final_layer = raw_output.hidden_states[-1] #treat this like a typi
 ## Citation
 If you use this work, please cite:
 ```bibtex
-@article {Heuschkel2025.08.19.671089,
-	author = {Heuschkel, James and Kingsley, Laura and Pefaur, Noah and Nixon, Andrew and Cramer, Steven},
-	title = {Advancing Codon Language Modeling with Synonymous Codon Constrained Masking},
-	elocation-id = {2025.08.19.671089},
-	year = {2025},
-	doi = {10.1101/2025.08.19.671089},
-	publisher = {Cold Spring Harbor Laboratory},
-	abstract = {Codon language models offer a promising framework for modeling protein-coding DNA sequences, yet current approaches often conflate codon usage with amino acid semantics, limiting their ability to capture DNA-level biology. We introduce SynCodonLM, a codon language model that enforces a biologically grounded constraint: masked codons are only predicted from synonymous options, guided by the known protein sequence. This design disentangles codon-level from protein-level semantics, enabling the model to learn nucleotide-specific patterns. The constraint is implemented by masking non-synonymous codons from the prediction space prior to softmax. Unlike existing models, which cluster codons by amino acid identity, SynCodonLM clusters by nucleotide properties, revealing structure aligned with DNA-level biology. Furthermore, SynCodonLM outperforms existing models on 6 of 7 benchmarks sensitive to DNA-level features, including mRNA and protein expression. Our approach advances domain-specific representation learning and opens avenues for sequence design in synthetic biology, as well as deeper insights into diverse bioprocesses.Competing Interest StatementThe authors have declared no competing interest.},
-	URL = {https://www.biorxiv.org/content/early/2025/08/24/2025.08.19.671089},
-	eprint = {https://www.biorxiv.org/content/early/2025/08/24/2025.08.19.671089.full.pdf},
-	journal = {bioRxiv}
+@article{10.1093/nar/gkag166,
+    author = {Heuschkel, James and Kingsley, Laura and Pefaur, Noah and Nixon, Andrew and Cramer, Steven},
+    title = {Advancing codon language modeling with synonymous codon constrained masking},
+    journal = {Nucleic Acids Research},
+    volume = {54},
+    number = {5},
+    pages = {gkag166},
+    year = {2026},
+    month = {02},
+    abstract = {Codon language models offer a promising framework for modeling protein-coding DNA sequences, yet current approaches often conflate codon usage with amino acid semantics, limiting their ability to capture DNA-level biology. We introduce SynCodonLM, a codon language model that enforces a biologically grounded constraint: masked codons are only predicted from synonymous options, guided by the known protein sequence. This design disentangles codon-level from protein-level semantics, enabling the model to learn nucleotide-specific patterns. The constraint is implemented by masking non-synonymous codons from the prediction space prior to softmax. Unlike existing models, which cluster codons by amino acid identity, SynCodonLM clusters by nucleotide properties, revealing structure aligned with DNA-level biology. Furthermore, SynCodonLM outperforms existing models on six of seven benchmarks sensitive to DNA-level features, including messenger RNA and protein expression. Our approach advances domain-specific representation learning and opens avenues for sequence design in synthetic biology, as well as deeper insights into diverse bioprocesses.},
+    issn = {1362-4962},
+    doi = {10.1093/nar/gkag166},
+    url = {https://doi.org/10.1093/nar/gkag166},
+    eprint = {https://academic.oup.com/nar/article-pdf/54/5/gkag166/67103471/gkag166.pdf},
+}
 }
 ```
 ----
