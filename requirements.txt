@@ -5,6 +5,6 @@ pandas==2.3.1
 pytorch_lightning==2.4.0
 scikit_learn==1.7.1
 scipy==1.16.1
-torch==2.7.1+cu126
+torch==2.12.0
 tqdm==4.67.1
 transformers==4.48.3
